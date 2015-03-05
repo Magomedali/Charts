@@ -1,7 +1,7 @@
 function barChart(name){
     
     this.name=name;
-        
+    this.container="#container";    
     this.getName=function(){
         return this.name;
     }
@@ -17,7 +17,7 @@ function barChart(name){
         this.name=data;
     };
     this.buildChart=function(){
-        $('#container').highcharts({
+        $(this.container).highcharts({
         chart: {
             type: 'column'
         },

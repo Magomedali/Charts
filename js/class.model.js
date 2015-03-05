@@ -3,35 +3,50 @@ var myFunc={
 		getRandom:function(max,min){
 			return Math.random()* (max - min) + min;
 		},
-		getRoundVal:function(f){
-			f=f*100;
+		getRoundVal:function(f,dec){
+			f=f*dec;
 			f=Math.round(f);
-			f=f/100;
+			f=f/dec;
 			return f;
 		},
-		buildTable:function(count){
+		RandomPoints:function(count){
+			var data=[];
+			for (var i=0; i<count; i++) {
+				var point=myFunc.getRandom(0,1);
+				point=myFunc.getRoundVal(point,1000000);
+				data[i]=point;
+
+			}
+			return data
+
+		},
+		CongrPoints:function(count){
+			var data=[];
+
+			return data;
+		},
+		LehmerPoints:function(count,m,x,a,c){
+			var data=[];
+			data[0]=x;
+
+			for (var i = 1; i<count; i++) {
+				data[i]=((a*data[i-1])+parseInt(c))%m;
+			}
+			return data;
+		},
+		buildTable:function(data){
 
 			var table="<table border='1px'><tr>";
 			var td="<tr>";
 			var i;
-			var data=[];
-
-			for(i=0;i<count;i++){
-				var point=myFunc.getRandom(0,1);
-				point=myFunc.getRoundVal(point);
+			
+			for(i=0;i<data.length;i++){
 				table+="<td>"+(i+1)+"</td>";
-				td+="<td>"+point+"</td>";
-				data[i]=point;
+				td+="<td>"+data[i]+"</td>";
 			}
 			td+="</tr>";
 			table+="</tr>"+td+"</table>";
-			
-			var ret={
-				data:data,
-				table:table
-			}
-			//alert(ret);
-			return ret;
+			return table;
 		},
 		BuildSorttable:function(data){
 
@@ -87,40 +102,89 @@ var myFunc={
 			}
 			return data;
 		},
-		buildGisto:function(arr,t){
-			var i;
+		buildGisto2:function(arr,max,min,t){
 			var k=0;
+			var i;
 			var gisto=new Object();
-			var tempt=t;
-			var j=0;
-			for(i=0;i<arr.length;i++){
-			  tempt=myFunc.getRoundVal(tempt);
-			   if(arr[i]<=tempt){
-		 		 k=k+1; 
-			 	 }
-			 	 else{
-			 	 	//var ver=k/this.m;
-			 		gisto["t = "+tempt]=k;
-			 		j++;
-			 		k=0;
-			 		tempt=tempt+t;
-			 	}		
-			}
+			var tempt=parseFloat(min);
+			t=parseFloat(t);
+			max=parseFloat(max);
+			var tay=tempt;
+			
+			while(tempt<max){
+			    tempt=myFunc.getRoundVal(tempt,1000000);
+			 	k=0;
+			 	tay=myFunc.getRoundVal(tay+t,1000000);
+				
+				for (i = 0; i < arr.length; i++) {
+			 		if(tempt<=arr[i] && arr[i]<=tay){
+		 				 k=k+1;
+			 		 } 
+			 	}
+
+			 gisto["t = "+tempt]=k;
+			 tempt=tempt+t;	
+			   		
+			};
 
 			return myFunc.parseObj(gisto);
-			//return gisto;
-		}
+			
+		},
+		getExpPoints:function(points,alpha,consts){
+			
+			if(Array.isArray(points)){
+				if(typeof(consts)=="undefined") consts=0;
+				var expPoints=[];
+				for (var i = 0; i < points.length; i++) {
+					//Формула Экспотенциального распределения
+					expPoints[i]=-(1/parseFloat(alpha))*(Math.log((points[i])))+consts;
+					//Округляем до 100
+					expPoints[i]=this.getRoundVal(expPoints[i],1000000);
+				}
+				//alert(points);
+				//alert(expPoints);
+				return expPoints;
+			}
+		},
+		getNormPoints:function(count,mozh,sred,mx){
 
+			var NormPoint=[];
+			
+			
+			//var Randoms=[];
+			// for (var i=0; i<mx; i++) {
+			// 	Randoms[i]=this.RandomPoints(count);
+			// };
+			// //alert(Randoms[0]);
+			
+			
+
+			for (var i=0; i<count; i++) {
+
+				var Random=this.RandomPoints(mx);
+				var tempz=0;
+				
+				for (var j=0;j<mx; j++) {
+					tempz=tempz+(Random[j]-(mx/2));		
+					
+				}
+
+				NormPoint[i]=mozh+(sred*Math.sqrt((12/mx)))*tempz;
+			}
+
+			return NormPoint;
+		},
+		gettroints:function(count,width,s){
+			var trPoints=[];
+
+			for (var i=0;i<count; i++) {
+				trPoints[i]=width*(this.getRandom(0,1)+this.getRandom(0,1))+s;	
+			}
+
+			return trPoints;
+		}
 
 	}
 
-
-	function Car(name){
-		this.name=name;
-		
-		this.getName=function(){
-			return this.name;
-		}
-	}
-
-	
+var filtr={
+}

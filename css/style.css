@@ -71,3 +71,80 @@ div.t4 {
 #placeholder{
 	margin: 20px auto;
 }
+
+
+ol.t1params{
+	list-style-type: none;
+}
+
+ol.t1params li{
+	margin:5px 10px;
+}
+
+ol.t1params li input{
+	
+}
+span.params{
+	display: none;
+}
+
+span.lehmer_description{
+outline: 1px solid #000000;
+display: block;
+width: 246px;
+position: absolute;
+left: 540px;
+top: 190px;
+}
+
+div.forTable{
+margin: 10px 5px;
+}
+
+div.showtable{
+	width: 112px;
+	height: 18px;
+	padding: 6px 6px;
+	border: 1px solid rgba(137, 105, 105, 0.73);
+	cursor: pointer;
+	border-radius: 1px;
+	margin: 13px 10px;
+}
+
+div.tables{
+	display: none;
+}
+
+div.divforparamsRav{
+	margin: 10px 8px;
+}
+
+#ravnom button.generate{
+	margin: 0px 10px 6px;
+}
+
+.tablesdisplay{
+	display: block;
+}
+
+
+.divforparamsExp, .divforparamsNorm, .divforparamsTreug{
+	margin: 10px 8px;
+}
+
+.divforparamsExp ul, .divforparamsNorm ul, .divforparamsTreug ul{
+	list-style: none;
+	margin: 8px 8px;
+}
+
+.divforparamsExp ul li, .divforparamsNorm ul li, .divforparamsTreug ul li{
+	margin: 8px 4px;
+}
+
+.divforparamsExp ul li input{
+	
+}
+
+.divforparamsExp button#exp_gen, .divforparamsNorm button, .divforparamsTreug button{
+	margin: 0px 10px 6px;
+}
