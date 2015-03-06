@@ -20,6 +20,7 @@
 		<li class="t2"><a>Экспоненциальное распределение</a></li>
 		<li class="t3"><a>Треугольное распределение</a></li>
 		<li class="t4"><a>Нормально распределение</a></li>
+		<li class="t5"><a>Эрланговское распределение</a></li>
 	</ul>
 
 	<div class="t1" id="ravnom">
@@ -200,6 +201,44 @@
 			</div>
 
 		<div id="contNorm" style="width:100%; height:400px;"></div>
+	</div>
+	
+	<div class="t5">
+		<div class="divforparamsErl">
+			<fieldset>
+			<legend>Параметры нормального распределения</legend> 
+			 <ul>
+				<li>
+					<label for="countErl">Количество точек</label>
+					<input type="text"  id="countErl" size="5" value="10000">
+				</li>
+				<li>
+					<label for="countErlT">Количество разбиении</label>
+					<input type="text"  id="countErlT" size="5" value="20">
+				</li>
+				<li>
+					<label for="ErlB">Cмещение</label>
+					<input type="text"  id="ErlB" size="5" value="15">
+				</li>
+				<li>
+					<label for="lambdaErl">&#955</label>
+					<input type="text" id="lambdaErl" size="5" value="0.2">
+				</li>
+				<li>
+					<label for="ErlR">Количество экспн. распределении</label>
+					<input type="text" id="ErlR" size="5" value="6">
+				</li>
+			 </ul>
+				<button id="Erl_gen">Гистограмма</button>
+			
+			</fieldset>
+		</div>
+			
+			<div class="Erl_fortable">
+
+			</div>
+
+		<div id="contErl" style="width:100%; height:400px;"></div>
 	</div>
 
 </div>

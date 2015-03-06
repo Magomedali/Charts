@@ -4,7 +4,7 @@ a {color: blue;}
 p {padding: 7px 0;}
 h1 {font-size: 20px; margin: 0 0 30px;}
 #wrapper {
-	width: 1000px;
+	width: 1250px;
 }
 
 /* tabs */
@@ -128,16 +128,16 @@ div.divforparamsRav{
 }
 
 
-.divforparamsExp, .divforparamsNorm, .divforparamsTreug{
+.divforparamsExp, .divforparamsNorm, .divforparamsTreug, .divforparamsErl{
 	margin: 10px 8px;
 }
 
-.divforparamsExp ul, .divforparamsNorm ul, .divforparamsTreug ul{
+.divforparamsExp ul, .divforparamsNorm ul, .divforparamsTreug ul, .divforparamsErl ul{
 	list-style: none;
 	margin: 8px 8px;
 }
 
-.divforparamsExp ul li, .divforparamsNorm ul li, .divforparamsTreug ul li{
+.divforparamsExp ul li, .divforparamsNorm ul li, .divforparamsTreug ul li, .divforparamsErl ul li{
 	margin: 8px 4px;
 }
 
@@ -145,6 +145,6 @@ div.divforparamsRav{
 	
 }
 
-.divforparamsExp button#exp_gen, .divforparamsNorm button, .divforparamsTreug button{
+.divforparamsExp button#exp_gen, .divforparamsNorm button, .divforparamsTreug button, .divforparamsErl button{
 	margin: 0px 10px 6px;
 }

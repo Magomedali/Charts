@@ -174,7 +174,7 @@ var myFunc={
 
 			return NormPoint;
 		},
-		gettroints:function(count,width,s){
+		gettrPoints:function(count,width,s){
 			var trPoints=[];
 
 			for (var i=0;i<count; i++) {
@@ -182,6 +182,18 @@ var myFunc={
 			}
 
 			return trPoints;
+		},
+		getErlPoints:function(count,lamda,B,R){
+			ErlPoints=[];
+			for (var i=0; i<count; i++) {
+				ErlPoints[i]=0;
+				for (var j=0;j<R; j++) {
+					ErlPoints[i]=ErlPoints[i]-(1/parseFloat(lamda))*Math.log(this.getRandom(0,1));
+				}
+				//ErlPoints[i]=-(1/parseFloat(lamda))*this.getRandom(0,1)+B;
+			}
+
+			return ErlPoints;
 		}
 
 	}

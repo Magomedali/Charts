@@ -10,6 +10,7 @@ $(function(){
 	$('div.t2').hide();
 	$('div.t3').hide();
 	$('div.t4').hide();
+	$('div.t5').hide();
 	$('div.' + thisClass).show();
 	$('ul.tabs.tabs1 li').removeClass('tab-current');
 	$(this).addClass('tab-current');
@@ -27,14 +28,14 @@ $(function(){
 
 	//-----------------------------Фильтрация и проверка входящих данных-----------------------------
 	//Предотвращаем ввод не числовых данных
-	$("input[type=text]").not("input#alphaexp").keypress(function(event){
+	$("input[type=text]").not("input#alphaexp , input#lambdaErl").keypress(function(event){
 		if(event.which && (event.which < 48 || event.which >57)){
 			event.preventDefault();
 		}
 	});
 
 	//Ввод только цифр и точки для вещественных чисел
-	$("input#alphaexp").keypress(function(event){
+	$("input#alphaexp , input#lambdaErl").keypress(function(event){
 		if(event.which && event.which!=46 && (event.which < 48 || event.which >57)){
 			event.preventDefault();
 		}
@@ -375,7 +376,7 @@ $(function(){
 
 		if(countTr!=0){
 			
-			var trPoints=myFunc.gettroints(countTr,widthtr,trs);
+			var trPoints=myFunc.gettrPoints(countTr,widthtr,trs);
 			//alert(trPoints);
 
 			// //Строим таблицу
@@ -436,4 +437,99 @@ $(function(){
 		
 	});
 
+
+	//---------------------------Эрланговское распределение---------------------------------
+	//---------------------------Эрланговское распределение---------------------------------
+	//---------------------------Эрланговское распределение---------------------------------
+	//---------------------------Эрланговское распределение---------------------------------
+	//---------------------------Эрланговское распределение---------------------------------
+	//---------------------------Эрланговское распределение---------------------------------
+	//---------------------------Эрланговское распределение---------------------------------
+
+	$("button#Erl_gen").on("click",function(){
+
+		var lambdaErl=$("input#lambdaErl").val();
+
+		if(!/^[0-9]+\.?[0-9]+$/.test(lambdaErl) || lambdaErl==0){
+			alert("Введите правильное значение для Лямбда!!!");
+			return null;
+		}
+
+		var countErl=parseInt($("input#countErl").val());
+		var countErlT=parseInt($("input#countErlT").val());
+		var ErlR=parseInt($("input#ErlR").val());
+		lambdaErl=parseFloat(lambdaErl);
+		var ErlB=parseInt($("input#ErlB").val());
+
+		if(countErl<=countErlT){			
+			alert("Для получения корректного результата количество случайных величин\n должно быть меньше на несколько порядков, чем количество интервалов!!!");
+			return null;
+		}
+		if(countErl==0 || ErlR==0 || countErlT==0 || ErlB==0 || lambdaErl==0){			
+			alert("Пустых значении не должно быть");
+			return null;
+		}
+
+		if(countErl!=0){
+			
+			var ErlPoints=myFunc.getErlPoints(countErl,lambdaErl,ErlB,ErlR);
+			//alert(normPoints);
+			
+			//Строим таблицу
+			var table=myFunc.buildTable(ErlPoints);
+			
+			//Сортируем массив точек
+			ErlPoints.sort(function(a,b){return a-b});
+			var Erl_max=myFunc.getMax(ErlPoints);
+			
+			if(Erl_max=="infinity"){
+				alert("При преобразовании экспоненциального распределения получено бесконечное значение!!\n Попробуйте уменшить количество точек");
+				return null;
+			}
+
+			var Erl_min=myFunc.getMin(ErlPoints);
+			
+			$("div.divforparamsErl span.minmax").text("Max = "+Erl_max+"; Min = "+Erl_min);
+
+			if(myFunc.isInt(countErlT) && countErlT!=0){
+				
+				//нахожим значение тау
+				var ErlT=myFunc.getRoundVal((Erl_max-Erl_min)/countErlT,1000000);
+				
+				//Выводим значение тау
+				$("div.divforparamsErl span.t").text("Interval value t = "+ErlT);
+
+				//Готовим данные для гистограммы значения по x и по y
+				var Erlts=[];
+				//alert(expPoints);
+				Erlts=myFunc.buildGisto2(ErlPoints,Erl_max,Erl_min,ErlT);
+				//alert(expts);
+
+				var ta=myFunc.getTable(Erlts);
+				
+				$(".Erl_fortable").html("<div class='showtable'>Показать таблицу</div><div class='tables'></div>");
+
+				$(".Erl_fortable .tables").html(table+myFunc.BuildSorttable(ErlPoints)+ta);
+				
+				var chart4=new barChart("Эрланговское распределение");
+				
+				
+				chart4.container="#contErl";
+				chart4.setData(Erlts);
+				chart4.buildChart();
+
+				
+			}else{
+				
+				$("div.divforparamsErl span.error").text("Error!!!Value n meant to be > 0");
+				return null;
+			
+			}
+
+		}else{
+			
+		 alert("Количество случайных величин не должно равняться нулю");
+		}
+		
+	});
 })
