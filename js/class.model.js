@@ -194,6 +194,96 @@ var myFunc={
 			}
 
 			return ErlPoints;
+		},
+		myConverter:function(fl){
+			var decimal=fl % 1;
+			var strDec=decimal.toString();
+			var str=strDec.substr(2);
+			var parInt=parseInt(str);
+			return parInt;
+		},
+		getInt:function(param){
+			switch(param){
+				case "exp": 
+					//alert("корень из exp");
+					//получаем корень експоненты
+					var sqrtexp=Math.exp(1);
+					var s=myFunc.myConverter(sqrtexp);
+
+					return s;
+					break;
+				case "pi" :	
+					//alert("корень из  pi");
+					var sqrtPi=Math.PI;
+					var s=myFunc.myConverter(sqrtPi);
+					return s;
+					break;
+				case "2" :	
+					//alert("корень из  2");
+					var sqrt=Math.sqrt(2);
+					var s=myFunc.myConverter(sqrt);
+					return s;
+					break;
+				case "3" :	
+					//alert("корень из  3");
+					var sqrt=Math.sqrt(3);
+					var s=myFunc.myConverter(sqrt);
+					return s;
+					break;
+				case "5" :	
+					//alert("корень из  5");
+					var sqrt=Math.sqrt(5);
+					var s=myFunc.myConverter(sqrt);
+					return s;
+					break;
+				case "7" :	
+					//alert("корень из  7");
+					var sqrt=Math.sqrt(7);
+					var s=myFunc.myConverter(sqrt);
+					return s;
+					break;
+				case "11" :	
+					// alert("корень из 11");
+					var sqrt=Math.sqrt(11);
+					var s=myFunc.myConverter(sqrt);
+					return s;
+					break;
+				case "13" :	
+					// alert("корень из 13");
+					var sqrt=Math.sqrt(13);
+					var s=myFunc.myConverter(sqrt);
+					return s;
+					break;						
+
+			}
+		}
+		,
+		getChekedParams:function(count){
+			//метод возвращает значения выбранных параметров checkbox
+			var c=$('span.congr_params :checkbox:checked');
+			if(c.length!=2) {
+				alert("Выберите два любых параметра");
+				return false;
+			}
+			var congrPoints=[];
+
+			var p1=c.eq(0).attr("name");
+			var p2=c.eq(1).attr('name');
+			
+			var a=myFunc.getInt(p1);
+			var b=myFunc.getInt(p2);
+			
+			var ab=0;
+			var temp=b;
+			for (var i = 0; i < count; i++) {
+				ab=a*temp;
+				var strab=ab.toString();
+				temp=parseFloat("0."+strab.substr(2,12));	
+				congrPoints[i]=temp;
+				temp=myFunc.myConverter(temp);
+			};
+
+			return congrPoints;
 		}
 
 	}

@@ -45,14 +45,23 @@
 			 		<input type="radio" name="kind_gen" id="congr_radio" value="congr" >Конгруэнции
 			 	</label>
 			 	<span class="congr_params params">
-			 		 <span>Значения M</span>
-			 		 <input type="text"  id="_m" class="_params" size="3">
-			 		 <span>X0</span>
-			 		 <input type="text"  id="_xo" class="_params" size="3">
-			 		 <span>A</span>
-			 		 <input type="text"  id="_a" class="_params" size="3">
-			 		 <span>C</span>
-			 		 <input type="text" id="_c" class="_params" size="3">
+			 		 <span class="desc">Выберите два любых параметра</span> 
+			 		 <label for="cexp">e</label>
+			 		 <input type="checkbox" name="exp" id="cexp" checked>
+			 		 <label for="cpi">pi</label>
+			 		 <input type="checkbox" name="pi" id="cpi">
+			 		 <label for="c2">2</label>
+			 		 <input type="checkbox" name="2" id="c2" checked>
+			 		 <label for="c3">3</label>
+			 		 <input type="checkbox" name="3" id="c3">
+			 		 <label for="c5">5</label>
+			 		 <input type="checkbox" name="5" id="c5">
+			 		 <label for="c7">7</label>
+			 		 <input type="checkbox" name="7" id="c7">
+			 		 <label for="c11">11</label>
+			 		 <input type="checkbox" name="11" id="c11">
+			 		 <label for="c13">13</label>
+			 		 <input type="checkbox" name="13" id="c13">
 			 	</span>
 			 </li>
 			 <li>
@@ -206,7 +215,7 @@
 	<div class="t5">
 		<div class="divforparamsErl">
 			<fieldset>
-			<legend>Параметры нормального распределения</legend> 
+			<legend>Параметры эрланговского распределения</legend> 
 			 <ul>
 				<li>
 					<label for="countErl">Количество точек</label>

@@ -82,7 +82,7 @@ $(function(){
 						points=myFunc.RandomPoints(m);
 						break;
 					case "congr":
-						alert("congr");
+						points=myFunc.getChekedParams(m);
 						break;
 					case "lehmer":
 						var lehmer_m=$("#lehmer_m").val();

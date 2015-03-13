@@ -56,7 +56,8 @@ ul.tabs li.tab-current a {
 }
 div.t2,
 div.t3,
-div.t4 {
+div.t4,
+div.t5 {
 	display: none;
 }
 div.t1,
@@ -147,4 +148,16 @@ div.divforparamsRav{
 
 .divforparamsExp button#exp_gen, .divforparamsNorm button, .divforparamsTreug button, .divforparamsErl button{
 	margin: 0px 10px 6px;
+}
+
+span.congr_params{
+	margin: 0px 50px;
+}
+
+span.congr_params label{
+	padding: 0px 0px 0px 20px;
+}
+
+span.congr_params input{
+
 }
